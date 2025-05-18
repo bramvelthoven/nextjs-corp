@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export function HeroSection() {
   return (
@@ -20,9 +21,9 @@ export function HeroSection() {
             The most advanced therapy methods, personalized for you, and available anytime.
           </p>
           <div className="flex justify-end">
-            <Button variant="outline" className="mt-4">
-              Get Started
-            </Button>
+            <Button variant="outline" asChild>
+            <Link href="/chat">Lets have a chat!</Link>
+          </Button>
           </div>
         </div>
       </div>

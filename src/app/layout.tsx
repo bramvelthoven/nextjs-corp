@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Separator } from "@/components/ui/separator";
-import "./globals.css";
+import "@/app/styles/globals.css";
 import Header  from "@/components/header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -39,8 +39,9 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
-          </ThemeProvider></main>
-
+          </ThemeProvider>
+          </main>
+          
         <Separator />
         <Footer />
         <Separator />

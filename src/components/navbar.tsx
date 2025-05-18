@@ -1,6 +1,5 @@
 'use client'
 
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ModeToggle } from "./ui/mode-toggle"
@@ -14,7 +13,7 @@ export function Navbar() {
         </Link>
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-6">
-            {["Research", "Product", "Safety", "Company"].map((item) => (
+            {["How it Works", "Pricing", "FAQ"].map((item) => (
               <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -25,9 +24,10 @@ export function Navbar() {
             ))}
           </div>
           <ModeToggle />
-          <Button variant="outline">
+          <Button variant="outline" asChild>
             <Link href="/login">Login</Link>
           </Button>
+          
         </div>
 
       </nav>
