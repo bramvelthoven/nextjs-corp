@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Separator } from "@/components/ui/separator";
 import "./globals.css";
+import Header  from "@/components/header";
+import Footer from "@/components/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,26 +30,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground`}>
-        <header className="bg-primary text-primary-foreground p-4">
-          <div className="max-w-5xl mx-auto flex justify-between items-center">
-            <h1 className="text-xl font-bold">Bram's App</h1>
-            <nav className="space-x-4">
-              <a href="/" className="hover:underline">Home</a>
-              <a href="/about" className="hover:underline">About</a>
-              <a href="/settings" className="hover:underline">Settings</a>
-            </nav>
-          </div>
-        </header>
-
-        <main className="max-w-5xl mx-auto p-6">{children}</main>
+        <Header />
+        <main className="max-w-5xl mx-auto p-6">          
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider></main>
 
         <Separator />
-
-        <footer className="bg-secondary text-secondary-foreground p-4 text-center">
-          <p className="text-sm">
-            © {new Date().getFullYear()} Bram's App. All rights reserved.
-          </p>
-        </footer>
+        <Footer />
+        <Separator />
       </body>
     </html>
   );
