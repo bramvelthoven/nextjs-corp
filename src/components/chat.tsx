@@ -1,77 +1,48 @@
-'use client';
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+// app/page.tsx
+"use client";
+
+import { FormEvent, useState } from "react";
+import { ChatCompletionStream } from "together-ai/lib/ChatCompletionStream";
 
 export default function Chat() {
-  const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function handleSend() {
-    if (!input.trim()) return;
-    const newMessages = [...messages, { role: "user", content: input }];
-    setMessages(newMessages);
-    setInput("");
-    setLoading(true);
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-    const res = await fetch("/api/chat", {
+    setIsLoading(true);
+    setAnswer("");
+
+    const res = await fetch("/api/answer", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: newMessages }),
+      body: JSON.stringify({ question }),
     });
-    const data = await res.json();
-    setMessages([...newMessages, { role: "assistant", content: data.content }]);
-    setLoading(false);
+
+    if (!res.body) return;
+
+    ChatCompletionStream.fromReadableStream(res.body)
+      .on("content", (delta) => setAnswer((text) => text + delta))
+      .on("end", () => setIsLoading(false));
   }
 
   return (
-    <Card className="max-w-lg mx-auto mt-10">
-      <CardHeader>
-        <CardTitle>AI Chatbot</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4 min-h-[200px]">
-        {messages.length === 0 && (
-          <div className="text-muted-foreground text-center">Start the conversation!</div>
-        )}
-        {messages.map((msg, idx) => (
-          <div
-            key={idx}
-            className={`rounded-lg px-3 py-2 ${
-              msg.role === "user"
-                ? "bg-[var(--primary)] text-[var(--primary-foreground)] self-end ml-auto max-w-[80%]"
-                : "bg-muted text-foreground self-start mr-auto max-w-[80%]"
-            }`}
-          >
-            {msg.content}
-          </div>
-        ))}
-        {loading && (
-          <div className="text-muted-foreground text-center">Thinking...</div>
-        )}
-      </CardContent>
-      <CardFooter>
-        <form
-          className="flex w-full gap-2"
-          onSubmit={e => {
-            e.preventDefault();
-            handleSend();
-          }}
-        >
-          <Input
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Say something..."
-            className="flex-1"
-            autoFocus
-            disabled={loading}
-          />
-          <Button type="submit" variant="default" disabled={loading}>
-            Send
-          </Button>
-        </form>
-      </CardFooter>
-    </Card>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Ask me a question"
+          required
+        />
+
+        <button disabled={isLoading} type="submit">
+          Submit
+        </button>
+      </form>
+
+      <p>{answer}</p>
+    </div>
   );
 }
