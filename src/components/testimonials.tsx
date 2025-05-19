@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 const testimonials = [
   { image: "/person1.png", text: "I can't believe how much better I feel" },
   { image: "/person2.png", text: "This is the best decision I've made in a long time" },
@@ -10,9 +12,9 @@ export function Testimonials() {
       <h3 className="text-xl font-semibold mb-6">Real people, real results</h3>
       <div className="flex gap-4 flex-wrap">
         {testimonials.map((t, idx) => (
-          <div key={idx} className="flex flex-col items-center space-y-2">
-            <img src={t.image} alt="Testimonial" className="w-20 h-20 rounded-full object-cover" />
-            <p className="text-center text-sm text-primary">{t.text}</p>
+          <div key={idx} className="flex flex-col items-start space-y-2 max-w-[96px]">
+            <Image height={96} width={96} src={t.image} alt="Testimonial" className="rounded object-cover" />
+            <p className="text-start text-sm text-primary mt-2">{t.text}</p>
           </div>
         ))}
       </div>

@@ -14,7 +14,7 @@ export function Features() {
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {features.map((f, idx) => (
           <div key={idx} className="bg-primary p-4 rounded-xl shadow-sm border">
-            <MessageSquareMore size={24} className="color-secondary"/>
+            <MessageSquareMore size={24} className="color-secondary mb-2"/>
             <h4 className="font-semibold text-sm mb-2">{idx + 1}. {f.title}</h4>
             <p className="text-sm text-primary">{f.text}</p>
           </div>

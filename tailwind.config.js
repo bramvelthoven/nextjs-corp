@@ -1,7 +1,7 @@
-// tailwind.config.js
 module.exports = {
+  darkMode: "class",
   content: [
-    "./src/**/*.{js,ts,jsx,tsx,html}", // adjust as needed based on your project
+    "./src/**/*.{js,ts,jsx,tsx,html}",
     "./public/index.html",
   ],
   theme: {
@@ -24,27 +24,41 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        xs: "0.75rem",     // 12px
-        sm: "0.875rem",    // 14px
-        base: "1rem",      // 16px
-        lg: "1.125rem",    // 18px
-        xl: "1.25rem",     // 20px
-        "2xl": "1.5rem",   // 24px
-        "3xl": "1.875rem", // 30px
-        "4xl": "2.25rem",  // 36px
-        "5xl": "3rem",     // 48px
-        "6xl": "3.75rem",  // 60px
+        xs: "0.75rem",
+        sm: "0.875rem",
+        base: "1rem",
+        lg: "1.125rem",
+        xl: "1.25rem",
+        "2xl": "1.5rem",
+        "3xl": "1.875rem",
+        "4xl": "2.25rem",
+        "5xl": "3rem",
+        "6xl": "3.75rem",
       },
       spacing: {
-        // Optional: add custom spacing values here
         18: "4.5rem",
         22: "5.5rem",
         26: "6.5rem",
       },
       maxWidth: {
-        "8xl": "90rem", // 1440px
+        "8xl": "90rem",
+      },
+      colors: {
+        background: { DEFAULT: "oklch(1 0 0)" },
+        foreground: { DEFAULT: "oklch(0.141 0.005 285.823)" },
+        primary: { DEFAULT: "#638763" },
+        "primary-foreground": { DEFAULT: "oklch(0.982 0.018 155.826)" },
+        border: { DEFAULT: "oklch(0.92 0.004 286.32)" },
+        input: { DEFAULT: "oklch(0.92 0.004 286.32)" },
+
+        "dark-background": { DEFAULT: "oklch(0.141 0.005 285.823)" },
+        "dark-foreground": { DEFAULT: "oklch(0.985 0 0)" },
+        "dark-primary": { DEFAULT: "#638763" },
+        "dark-primary-foreground": { DEFAULT: "oklch(0.393 0.095 152.535)" },
+        "dark-border": { DEFAULT: "oklch(1 0 0 / 10%)" },
+        "dark-input": { DEFAULT: "oklch(1 0 0 / 15%)" },
       },
     },
   },
   plugins: [],
-}
+};

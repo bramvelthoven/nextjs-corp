@@ -2,7 +2,7 @@ import { Navbar } from "./navbar"
 
 export default function Header() {
   return (
-    <header className="border-b border-ring">
+    <header className="relative">
         <Navbar/>
 
     </header>

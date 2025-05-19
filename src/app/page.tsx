@@ -1,6 +1,5 @@
 'use client'
-
-import  { HeroSection } from "@/components/herosection";
+import { HeroSection } from "@/components/herosection";
 import { Testimonials } from "@/components/testimonials";
 import { Features } from "@/components/features";
 

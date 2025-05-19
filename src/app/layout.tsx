@@ -1,25 +1,19 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { Separator } from "@/components/ui/separator";
 import "@/app/styles/globals.css";
-import Header  from "@/components/header";
+import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Manrope } from 'next/font/google'
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const manrope = Manrope({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: "Nextjs-Corp",
-  description: "Small description about the app...",
+  title: "Solaro.io",
+  description: "Solaro.io AI Therapy",
 };
 
 export default function RootLayout({
@@ -28,23 +22,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground`}>
-        <Header />
-        <main className="max-w-5xl mx-auto p-6">          
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${manrope.className} min-h-screen`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="max-w-5xl mx-auto p-4 mt-[68px]">
             {children}
-          </ThemeProvider>
           </main>
-          
-        <Separator />
-        <Footer />
-        <Separator />
+          <Separator />
+          <Footer />
+          <Separator />
+        </ThemeProvider>
       </body>
     </html>
   );
