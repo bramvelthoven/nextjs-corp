@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ModeToggle } from "./ui/mode-toggle"
 import { Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import Image from "next/image"
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
@@ -33,7 +34,7 @@ export function Navbar() {
     >
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link href="/" className="flex items-center">
-          <h1 className="text-xl font-bold text-foreground">Solaro.io</h1>
+          <Image src="/logo-with-text.png" alt="Logo" width={120} height={60} /> 
         </Link>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">

@@ -23,6 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={`${manrope.className} min-h-screen`}>
         <ThemeProvider
           attribute="class"
@@ -31,7 +34,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="max-w-5xl mx-auto p-4 mt-[68px]">
+          <main className="max-w-5xl mx-auto p-4 mt-[132px]">
             {children}
           </main>
           <Separator />

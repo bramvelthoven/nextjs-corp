@@ -1,4 +1,11 @@
 import { MessageSquareMore } from "lucide-react"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card"
 
 const features = [
   { title: "Chat with a licensed therapist", text: "Licensed therapists use the latest techniques to help you improve your mental health." },
@@ -13,11 +20,19 @@ export function Features() {
       <h3 className="text-xl font-semibold mb-6">Facts about therapy</h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {features.map((f, idx) => (
-          <div key={idx} className="bg-primary p-4 rounded-xl shadow-sm border">
-            <MessageSquareMore size={24} className="color-secondary mb-2"/>
-            <h4 className="font-semibold text-sm mb-2">{idx + 1}. {f.title}</h4>
-            <p className="text-sm text-primary">{f.text}</p>
-          </div>
+          <Card key={idx} className="text-primary">
+            <CardHeader className="pb-2">
+              <MessageSquareMore size={24} className="text-primary" />
+              <CardTitle className="text-sm font-semibold">
+                {idx + 1}. {f.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription className="text-sm text-secondary-accent">
+                {f.text}
+              </CardDescription>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>

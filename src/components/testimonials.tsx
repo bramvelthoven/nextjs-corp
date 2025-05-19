@@ -1,4 +1,11 @@
 import Image from "next/image"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 const testimonials = [
   { image: "/person1.png", text: "I can't believe how much better I feel" },
@@ -12,10 +19,22 @@ export function Testimonials() {
       <h3 className="text-xl font-semibold mb-6">Real people, real results</h3>
       <div className="flex gap-4 flex-wrap">
         {testimonials.map((t, idx) => (
-          <div key={idx} className="flex flex-col items-start space-y-2 max-w-[96px]">
-            <Image height={96} width={96} src={t.image} alt="Testimonial" className="rounded object-cover" />
-            <p className="text-start text-sm text-primary mt-2">{t.text}</p>
-          </div>
+          <Card key={idx} className="w-[200px]">
+            <CardHeader className="items-center">
+              <Image
+                height={96}
+                width={96}
+                src={t.image}
+                alt="Testimonial"
+                className="rounded-full object-cover mx-auto"
+              />
+            </CardHeader>
+            <CardContent>
+              <CardDescription className="text-sm text-secondary-accent text-center">
+                {t.text}
+              </CardDescription>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>

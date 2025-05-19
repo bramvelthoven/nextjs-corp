@@ -51,9 +51,9 @@ export function HeroSection() {
   return (
     <section
       ref={vantaRef}
-      className="relative w-full h-[500px] flex items-center px-6 py-12 overflow-hidden"
+      className="relative w-full h-[600px] flex items-center px-6 py-12 overflow-hidden"
     >
-      <div className="absolute top-12 right-12 max-w-lg ml-10 z-50">
+      <div className="absolute top-12 right-12 max-w-lg ml-10 z-40">
         <h2 className="text-4xl font-bold text-primary drop-shadow">
           Therapy for your mind
         </h2>
