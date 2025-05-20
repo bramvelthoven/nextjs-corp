@@ -36,7 +36,10 @@ export function Navbar() {
     >
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link href="/" className="flex items-center">
-          <Image src="/logo-new.png" alt="Logo" width={80} height={80} /> 
+            <span className="text-2xl font-extrabold tracking-tight text-primary group-hover:text-secondary-accent transition-colors">
+            Solaro
+            <span className="text-secondary-accent">.io</span>
+          </span>
         </Link>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">
