@@ -2,6 +2,7 @@
 import { HeroSection } from "@/components/herosection";
 import { Testimonials } from "@/components/testimonials";
 import { Features } from "@/components/features";
+import  { MethodsCarousel } from "@/components/methods-carousel";
 
 export default function HomePage() {
   return (
@@ -9,6 +10,7 @@ export default function HomePage() {
       <HeroSection />
       <Testimonials />
       <Features />
+      <MethodsCarousel />
     </>
   )
 }

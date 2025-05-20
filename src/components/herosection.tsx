@@ -17,7 +17,6 @@ export function HeroSection() {
   useEffect(() => {
     if (!mounted) return
 
-    // Only initialize if ref is set and not already initialized
     if (vantaRef.current && !vantaEffect.current) {
       vantaEffect.current = BIRDS({
         el: vantaRef.current,
@@ -34,10 +33,14 @@ export function HeroSection() {
         alignment: 50,
         cohesion: 50,
         quantity: 3,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        scale: 1.00,
+        scaleMobile: 1.00,
       })
     }
 
-    // Cleanup on unmount
     return () => {
       if (vantaEffect.current) {
         vantaEffect.current.destroy()
@@ -46,7 +49,13 @@ export function HeroSection() {
     }
   }, [mounted])
 
-  if (!mounted) return null
+  if (!mounted) {
+    return (
+      <section
+        className="relative w-full h-[600px] bg-background">
+      </section>
+    )
+  }
 
   return (
     <section
@@ -62,7 +71,7 @@ export function HeroSection() {
         </p>
         <div className="flex justify-end mt-4">
           <Button variant="outline" asChild>
-            <Link href="/chat">Lets have a chat!</Link>
+            <Link href="/chat">Try our chat!</Link>
           </Button>
         </div>
       </div>

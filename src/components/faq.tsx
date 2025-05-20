@@ -1,4 +1,7 @@
+"use client"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
+import { useRef } from "react";
+import { useGsapFadeUpStagger } from "@/hooks/useGsapFadeUpStagger";
 
 const faqs = [
   {
@@ -79,13 +82,15 @@ const faqs = [
   },
 ];
 
-export default function Faq() {
+export function Faq() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  useGsapFadeUpStagger(sectionRef, ".faq-fade");
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen py-8 px-4">
+    <div ref={sectionRef}  className="flex flex-col items-center justify-start min-h-screen py-8 px-4">
       <h1 className="text-4xl font-bold mb-8 text-[color-primary]">Frequently Asked Questions</h1>
       <Accordion type="multiple" className="w-full max-w-3xl space-y-2">
         {faqs.map((faq, idx) => (
-          <AccordionItem key={faq.question} value={`faq-${idx}`}>
+          <AccordionItem key={faq.question} value={`faq-${idx}`} className="faq-fade">
             <AccordionTrigger className="text-lg text-left">{faq.question}</AccordionTrigger>
             <AccordionContent className="text-[color-foreground]/90">{faq.answer}</AccordionContent>
           </AccordionItem>

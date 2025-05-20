@@ -1,5 +1,9 @@
+"use client"
+
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { useRef } from "react"
+import { useGsapFadeIn } from "@/hooks/useGsapFadeIn"
 
 const plans = [
   {
@@ -45,9 +49,12 @@ const plans = [
   },
 ]
 
-export default function Pricing() {
+export function Pricing() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  useGsapFadeIn(sectionRef);
+
   return (
-    <section className="flex flex-col items-center justify-start min-h-screen py-12 px-4 bg-[color-background]">
+    <section ref={sectionRef} className="flex flex-col items-center justify-center min-h-full py-12 px-4 bg-[color-background]">
       <h1 className="text-4xl font-bold mb-2 text-[color-primary]">Pricing Plans</h1>
       <p className="mb-10 text-lg text-[color-foreground]/80 text-center max-w-2xl">
         Choose the plan that fits your needs. Upgrade, downgrade, or cancel anytime.
