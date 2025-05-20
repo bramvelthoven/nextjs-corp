@@ -36,7 +36,7 @@ export function Navbar() {
     >
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link href="/" className="flex items-center">
-          <Image src="/logo-with-text.png" alt="Logo" width={120  } height={60} /> 
+          <Image src="/logo-new.png" alt="Logo" width={120} height={120} /> 
         </Link>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6">
