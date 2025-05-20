@@ -56,7 +56,7 @@ export default function Pricing() {
         {plans.map((plan) => (
           <Card
             key={plan.name}
-            className={`flex flex-col justify-between border-2 ${
+            className={`flex flex-col justify-between border-2 transition-all duration-200 hover:border-secondary-accent ${
               plan.popular
                 ? "border-[color-primary] shadow-lg scale-105"
                 : "border-border"
@@ -100,5 +100,6 @@ export default function Pricing() {
         ))}
       </div>
     </section>
+    
   )
 }

@@ -20,7 +20,7 @@ export function Features() {
       <h3 className="text-xl font-semibold mb-6">Facts about therapy</h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {features.map((f, idx) => (
-          <Card key={idx} className="text-primary">
+          <Card key={idx} className="text-primary gap-0 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-muted/40">
             <CardHeader className="pb-2">
               <MessageSquareMore size={24} className="text-primary" />
               <CardTitle className="text-sm font-semibold">

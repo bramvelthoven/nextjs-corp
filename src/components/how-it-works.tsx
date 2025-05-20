@@ -1,4 +1,6 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function HowItWorks() {
   return (
@@ -9,12 +11,12 @@ export default function HowItWorks() {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
         {/* Step 1 */}
-        <Card>
+        <Card className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-muted/40">
           <CardHeader>
             <CardTitle className="text-xl mb-2">1. Sign Up & Personalize</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="list-disc ml-4 space-y-2 text-[color-foreground]">
+            <ul className="list-disc ml-4 space-y-2 text-[color-foreground] marker:text-secondary-accent">
               <li>Create your secure Solaro.io account in seconds.</li>
               <li>Answer a few questions about your goals and preferences.</li>
               <li>Our system matches you with the best AI therapy model for your needs.</li>
@@ -22,12 +24,12 @@ export default function HowItWorks() {
           </CardContent>
         </Card>
         {/* Step 2 */}
-        <Card>
+        <Card className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-muted/40">
           <CardHeader>
             <CardTitle className="text-xl mb-2">2. Start Your AI Therapy</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="list-disc ml-4 space-y-2 text-[color-foreground]">
+            <ul className="list-disc ml-4 space-y-2 text-[color-foreground] marker:text-secondary-accent">
               <li>Chat instantly with our advanced AI therapist, available 24/7.</li>
               <li>Receive guidance, exercises, and support tailored to you.</li>
               <li>All conversations are private and encrypted for your peace of mind.</li>
@@ -35,12 +37,12 @@ export default function HowItWorks() {
           </CardContent>
         </Card>
         {/* Step 3 */}
-        <Card>
+        <Card className="transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-muted/40">
           <CardHeader>
             <CardTitle className="text-xl mb-2">3. Access Human Help When Needed</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="list-disc ml-4 space-y-2 text-[color-foreground]">
+            <ul className="list-disc ml-4 space-y-2 text-[color-foreground] marker:text-secondary-accent">
               <li>Request a session with a licensed therapist at any time.</li>
               <li>Seamlessly transition from AI to human support for complex issues.</li>
               <li>Get fast, professional help—no waiting rooms, no hassle.</li>
@@ -69,11 +71,9 @@ export default function HowItWorks() {
         </ul>
       </div>
       <div className="mt-12">
-        <a href="/pricing">
-          <button className="bg-[color-primary] text-[color-primary-foreground] px-8 py-3 rounded-lg font-semibold shadow hover:bg-[color-primary]/90 transition">
-            See Plans & Pricing
-          </button>
-        </a>
+      <Button asChild variant="outline" size="lg">
+        <Link href="/pricing">See Plans & Pricing</Link>
+      </Button>
       </div>
     </section>
   );

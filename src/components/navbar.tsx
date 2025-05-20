@@ -49,7 +49,7 @@ export function Navbar() {
                   className={`text-sm font-medium transition-colors duration-200
                             ${
                     isActive
-                      ? "border-b-2 border-[color-secondary-accent] text-[color-secondary-accent]"
+                      ? "border-b-2 border-secondary-accent text-secondary-accent"
                       : "hover:text-foreground/80"
                   }
                   `}

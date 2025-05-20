@@ -89,7 +89,7 @@ export default function Chat() {
   };
 
   return (
-    <section className="flex flex-col h-[calc(100vh-64px)] max-w-2xl mx-auto bg-background rounded-lg shadow mt-8">
+    <section className="flex flex-col h-full max-w-2xl mx-auto bg-background rounded-lg shadow mt-8">
       {/* Header */}
       <header className="px-6 py-4 border-b flex flex-col items-center text-center">
         <h1 className="text-2xl font-semibold">Chat with our Coach ✨</h1>
@@ -111,7 +111,7 @@ export default function Chat() {
         </div>
       </header>
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-6" ref={messagesRef}>
+      <div className="flex-1 overflow-y-auto min-h-120 px-4 py-6" ref={messagesRef}>
         <ChatMessageList>
           {messages.length === 0 && (
             <ChatBubble variant="received">
