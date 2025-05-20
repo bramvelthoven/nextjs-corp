@@ -1,8 +1,8 @@
 'use client'
-import { HeroSection } from "@/components/herosection";
-import { Testimonials } from "@/components/testimonials";
-import { Features } from "@/components/features";
-import  { MethodsCarousel } from "@/components/methods-carousel";
+import { HeroSection } from "@/components/sections/herosection";
+import { Testimonials } from "@/components/sections/testimonials";
+import { Features } from "@/components/sections/features";
+import  { MethodsCarousel } from "@/components/sections/methods-carousel";
 
 export default function HomePage() {
   return (

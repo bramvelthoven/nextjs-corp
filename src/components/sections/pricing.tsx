@@ -3,7 +3,7 @@
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useRef } from "react"
-import { useGsapFadeIn } from "@/hooks/useGsapFadeIn"
+import { useGsapFadeIn } from "@/components/hooks/useGsapFadeIn"
 
 const plans = [
   {

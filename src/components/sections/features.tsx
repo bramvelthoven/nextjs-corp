@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGsapFadeUpStagger } from "@/hooks/useGsapFadeUpStagger";
+import { useGsapFadeUpStagger } from "@/components/hooks/useGsapFadeUpStagger";
 
 gsap.registerPlugin(ScrollTrigger);
 

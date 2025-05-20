@@ -18,7 +18,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useGsapFadeUpStagger } from "@/hooks/useGsapFadeUpStagger";
+import { useGsapFadeUpStagger } from "@/components/hooks/useGsapFadeUpStagger";
 
 const testimonials = [
   { image: "/person1.png", text: "I can't believe how much better I feel", author: "Sarah J." },

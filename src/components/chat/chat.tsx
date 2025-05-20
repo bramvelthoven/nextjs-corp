@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/chat/chat-bubble";
 import { ChatInput } from "@/components/ui/chat/chat-input";
 import { ChatMessageList } from "@/components/ui/chat/chat-message-list";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Send } from "lucide-react";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { ChatCompletionStream } from "together-ai/lib/ChatCompletionStream";

@@ -1,7 +1,7 @@
 "use client"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { useRef } from "react";
-import { useGsapFadeUpStagger } from "@/hooks/useGsapFadeUpStagger";
+import { useGsapFadeUpStagger } from "@/components/hooks/useGsapFadeUpStagger";
 
 const faqs = [
   {

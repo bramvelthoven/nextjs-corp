@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Separator } from "@/components/ui/separator";
 import "@/app/styles/globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import { ThemeProvider } from "@/components/theme-provider";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import { ThemeProvider } from "@/components/layout/theme-provider";
 import { Manrope } from 'next/font/google'
 
 const manrope = Manrope({

@@ -1,5 +1,5 @@
-import  { Pricing } from "@/components/pricing";
-import { MethodsCarousel }  from "@/components/methods-carousel";
+import  { Pricing } from "@/components/sections/pricing";
+import { MethodsCarousel }  from "@/components/sections/methods-carousel";
 
 export default function PricingPage() {
   return (
