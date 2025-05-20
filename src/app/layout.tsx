@@ -34,7 +34,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="max-w-5xl mx-auto p-4 mt-[132px]">
+          <main className="max-w-5xl mx-auto p-4 mt-[69px]">
             {children}
           </main>
           <Separator />

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 // @ts-expect-error typing issue
@@ -7,16 +7,9 @@ import * as THREE from "three"
 
 export function HeroSection() {
   const vantaRef = useRef<HTMLDivElement>(null)
-  const vantaEffect = useRef<any>(null) 
-  const [mounted, setMounted] = useState(false)
+  const vantaEffect = useRef<any>(null)
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
-
     if (vantaRef.current && !vantaEffect.current) {
       vantaEffect.current = BIRDS({
         el: vantaRef.current,
@@ -40,28 +33,21 @@ export function HeroSection() {
         scaleMobile: 1.00,
       })
     }
-
     return () => {
       if (vantaEffect.current) {
         vantaEffect.current.destroy()
         vantaEffect.current = null
       }
     }
-  }, [mounted])
-
-  if (!mounted) {
-    return (
-      <section
-        className="relative w-full h-[600px] bg-background">
-      </section>
-    )
-  }
+  }, [])
 
   return (
-    <section
-      ref={vantaRef}
-      className="relative w-full h-[600px] flex items-center px-6 py-12 overflow-hidden"
-    >
+    <section className="relative w-full h-[600px] flex items-center px-6 py-12 overflow-hidden bg-background">
+      <div
+        ref={vantaRef}
+        className="absolute inset-0 w-full h-full z-0"
+        aria-hidden="true"
+      />
       <div className="absolute top-12 right-12 max-w-lg ml-10 z-40">
         <h2 className="text-4xl font-bold text-primary drop-shadow">
           Therapy for your mind
