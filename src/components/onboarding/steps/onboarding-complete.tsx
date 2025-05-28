@@ -8,7 +8,7 @@ interface OnboardingCompleteProps {
     updateData: (field: string, value: any) => void;
 }
 
-export default function OnboardingComplete({ data, updateData }: OnboardingCompleteProps) {
+export default function OnboardingComplete({ data }: OnboardingCompleteProps) {
     return (
         <div className="flex flex-col items-center justify-center py-6 space-y-4">
             <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">

@@ -1,13 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { UserProfile } from '@/types/profile'
 import { Dumbbell, BookOpen, MusicIcon, LucideIcon } from 'lucide-react'
-import { useRef } from "react";
-import { useGsapFadeUpStagger } from "@/components/hooks/useGsapFadeUpStagger";
-interface RecommendedActivitiesProps {
-    profileData: UserProfile | null;
-}
 
 interface Activity {
     title: string;
@@ -15,7 +9,7 @@ interface Activity {
     icon: LucideIcon;
 }
 
-export default function RecommendedActivities({ profileData }: RecommendedActivitiesProps) {
+export default function RecommendedActivities() {
     // Generate activities based on profile data
     const getRecommendedActivities = (): Activity[] => {
         const activities: Activity[] = [

@@ -1,7 +1,6 @@
-// src/components/dashboard/upcoming-appointments.tsx
 'use client'
 
-import {useEffect, useRef, useState} from 'react'
+import {useEffect, useState} from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { CalendarPlus } from 'lucide-react'

@@ -8,7 +8,8 @@ interface ChatMessageListProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const ChatMessageList = React.forwardRef<HTMLDivElement, ChatMessageListProps>(
-  ({ className, children, smooth = false, ...props }, _ref) => {
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    ({ className, children, smooth = false, ...props }, _ref) => {
     const {
       scrollRef,
       isAtBottom,
@@ -19,7 +20,7 @@ const ChatMessageList = React.forwardRef<HTMLDivElement, ChatMessageListProps>(
       smooth,
       content: children,
     });
-
+    /* eslint-enable @typescript-eslint/no-unused-vars */
     return (
       <div className="relative w-full h-full">
         <div

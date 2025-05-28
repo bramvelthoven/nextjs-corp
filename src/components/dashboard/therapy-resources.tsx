@@ -2,12 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { UserProfile } from '@/types/profile'
 import { BookOpen, Video, Headphones, ExternalLink } from 'lucide-react'
-
-interface TherapyResourcesProps {
-    profileData: UserProfile | null;
-}
 
 interface Resource {
     title: string;
@@ -17,10 +12,7 @@ interface Resource {
     icon: React.ElementType;
 }
 
-export default function TherapyResources({ profileData }: TherapyResourcesProps) {
-    // Get therapy style from profile
-    const therapyStyle = profileData?.therapy_preferences?.style || 'general';
-
+export default function TherapyResources() {
     const getResources = (): Resource[] => {
         // Resources could be filtered based on user preferences
         return [

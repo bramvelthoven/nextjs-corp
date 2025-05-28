@@ -6,8 +6,6 @@ import RecommendedActivities from '@/components/dashboard/recommended-activities
 import TherapyResources from '@/components/dashboard/therapy-resources'
 import UpcomingAppointments from '@/components/dashboard/upcoming-appointments'
 import { UserProfile } from '@/types/profile'
-import {useRef} from "react";
-import {useGsapFadeUpStagger} from "@/components/hooks/useGsapFadeUpStagger";
 
 export default async function DashboardPage() {
     const supabase = await createClient()
@@ -42,12 +40,12 @@ export default async function DashboardPage() {
                         initialMood={typedProfileData.assessment?.currentMood || 3}
                         userId={userData.user.id}
                     />
-                    <RecommendedActivities profileData={typedProfileData} />
+                    <RecommendedActivities/>
                 </div>
 
                 <div className="space-y-6">
                     <UpcomingAppointments userId={userData.user.id} />
-                    <TherapyResources profileData={typedProfileData} />
+                    <TherapyResources/>
                 </div>
             </div>
         </div>
