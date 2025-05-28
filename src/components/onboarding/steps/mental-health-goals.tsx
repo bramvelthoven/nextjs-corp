@@ -1,4 +1,3 @@
-// src/components/onboarding/steps/mental-health-goals.tsx
 'use client'
 
 import { Checkbox } from '@/components/ui/checkbox'
@@ -7,7 +6,15 @@ import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
-export default function MentalHealthGoals({ data, updateData }) {
+interface MentalHealthGoalsProps {
+    data: {
+        goals: string[];
+        [key: string]: any;
+    };
+    updateData: (step: string, data: any) => void;
+}
+
+export default function MentalHealthGoals({ data, updateData }: MentalHealthGoalsProps) {
     const [otherGoal, setOtherGoal] = useState('')
 
     const goals = [

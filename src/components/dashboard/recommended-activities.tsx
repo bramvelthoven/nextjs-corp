@@ -1,71 +1,66 @@
-// src/components/dashboard/mood-tracker.tsx
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Slider } from '@/components/ui/slider'
-import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
-import { createClient } from '@/lib/supabase/client'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { UserProfile } from '@/types/profile'
+import { Dumbbell, BookOpen, MusicIcon, LucideIcon } from 'lucide-react'
+import { useRef } from "react";
+import { useGsapFadeUpStagger } from "@/components/hooks/useGsapFadeUpStagger";
+interface RecommendedActivitiesProps {
+    profileData: UserProfile | null;
+}
 
-export default function MoodTracker({ initialMood, userId }: { initialMood: number; userId: string }) {
-    const [mood, setMood] = useState(initialMood)
-    const [note, setNote] = useState('')
-    const [saving, setSaving] = useState(false)
-    const supabase = createClient()
+interface Activity {
+    title: string;
+    description: string;
+    icon: LucideIcon;
+}
 
-    const saveMoodEntry = async () => {
-        setSaving(true)
-        try {
-            await supabase
-                .from('mood_entries')
-                .insert({
-                    user_id: userId,
-                    mood_level: mood,
-                    notes: note || null,
-                    created_at: new Date().toISOString()
-                })
-            setNote('')
-        } catch (error) {
-            console.error('Error saving mood:', error)
-        } finally {
-            setSaving(false)
-        }
+export default function RecommendedActivities({ profileData }: RecommendedActivitiesProps) {
+    // Generate activities based on profile data
+    const getRecommendedActivities = (): Activity[] => {
+        const activities: Activity[] = [
+            {
+                title: "5-minute meditation",
+                description: "Take a short break to clear your mind and reduce stress",
+                icon: BookOpen
+            },
+            {
+                title: "Quick workout routine",
+                description: "A short exercise session to boost your energy and mood",
+                icon: Dumbbell
+            },
+            {
+                title: "Relaxation playlist",
+                description: "Listen to calming music to improve your mental state",
+                icon: MusicIcon
+            }
+        ]
+
+        return activities;
     }
+
+    const activities = getRecommendedActivities();
 
     return (
         <Card>
             <CardHeader>
-                <CardTitle>How are you feeling today?</CardTitle>
-                <CardDescription>Track your mood to monitor your mental wellness</CardDescription>
+                <CardTitle>Recommended Activities</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-                <div className="space-y-2">
-                    <div className="flex justify-between text-sm text-muted-foreground mb-2">
-                        <span>😔 Not well</span>
-                        <span>😊 Great</span>
-                    </div>
-                    <Slider
-                        value={[mood]}
-                        min={1}
-                        max={5}
-                        step={1}
-                        onValueChange={(value) => setMood(value[0])}
-                    />
+            <CardContent>
+                <div className="space-y-4">
+                    {activities.map((activity, index) => (
+                        <div key={index} className="flex items-start gap-3 p-3 rounded-lg border">
+                            <div className="bg-primary/10 p-2 rounded-full">
+                                <activity.icon className="h-5 w-5 text-primary" />
+                            </div>
+                            <div>
+                                <h4 className="font-medium">{activity.title}</h4>
+                                <p className="text-sm text-muted-foreground">{activity.description}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-
-                <Textarea
-                    placeholder="Add notes about how you're feeling (optional)"
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    rows={3}
-                />
             </CardContent>
-            <CardFooter>
-                <Button onClick={saveMoodEntry} disabled={saving}>
-                    {saving ? 'Saving...' : 'Save Entry'}
-                </Button>
-            </CardFooter>
         </Card>
     )
 }

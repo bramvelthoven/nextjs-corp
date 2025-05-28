@@ -6,7 +6,7 @@ import Link from "next/link"
 import { ModeToggle } from "../ui/mode-toggle"
 import {
   Menu,
-  User,
+  User as UserIcon,
   LogOut,
   LayoutDashboard,
   Settings,
@@ -20,9 +20,9 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { createClient } from '@/lib/supabase/client'
+import type { User as SupabaseUser } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
@@ -30,7 +30,7 @@ export function Navbar() {
   const pathName = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
   const supabase = createClient();
 
   const menuItems = [
@@ -108,7 +108,7 @@ export function Navbar() {
             })}
             <ModeToggle />
             <Button variant="ghost" asChild>
-              <Link href="/rooms">Chat Rooms</Link>
+              <Link href="/chat">Let's have a chat!</Link>
             </Button>
 
             {user ? (
@@ -124,7 +124,7 @@ export function Navbar() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56">
                     <DropdownMenuItem className="cursor-pointer">
-                      <User className="mr-2 h-4 w-4" />
+                      <UserIcon className="mr-2 h-4 w-4" />
                       <span>Profile</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="cursor-pointer" asChild>
@@ -175,7 +175,7 @@ export function Navbar() {
                 ))}
                 <ModeToggle />
                 <Button variant="ghost" asChild>
-                  <Link href="/rooms" onClick={() => setOpen(false)}>
+                  <Link href="/chat" onClick={() => setOpen(false)}>
                     Chat Rooms
                   </Link>
                 </Button>

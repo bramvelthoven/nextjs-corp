@@ -1,4 +1,3 @@
-// src/app/dashboard/page.tsx
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import DashboardHeader from '@/components/dashboard/dashboard-header'
@@ -6,7 +5,9 @@ import MoodTracker from '@/components/dashboard/mood-tracker'
 import RecommendedActivities from '@/components/dashboard/recommended-activities'
 import TherapyResources from '@/components/dashboard/therapy-resources'
 import UpcomingAppointments from '@/components/dashboard/upcoming-appointments'
-import { Card, CardContent } from '@/components/ui/card'
+import { UserProfile } from '@/types/profile'
+import {useRef} from "react";
+import {useGsapFadeUpStagger} from "@/components/hooks/useGsapFadeUpStagger";
 
 export default async function DashboardPage() {
     const supabase = await createClient()
@@ -24,23 +25,29 @@ export default async function DashboardPage() {
         .eq('user_id', userData.user.id)
         .single()
 
-    if (!profileData?.onboarding_completed) {
+    // Type assertion to help TypeScript understand the structure
+    const typedProfileData = profileData as UserProfile | null
+
+    if (!typedProfileData || typedProfileData.onboarding_completed !== true) {
         redirect('/protected')
     }
 
     return (
         <div className="container mx-auto space-y-6">
-            <DashboardHeader userData={userData.user} profileData={profileData} />
+            <DashboardHeader userData={userData.user} profileData={typedProfileData} />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-6">
-                    <MoodTracker initialMood={profileData?.assessment?.currentMood || 3} userId={userData.user.id} />
-                    <RecommendedActivities profileData={profileData} />
+                    <MoodTracker
+                        initialMood={typedProfileData.assessment?.currentMood || 3}
+                        userId={userData.user.id}
+                    />
+                    <RecommendedActivities profileData={typedProfileData} />
                 </div>
 
                 <div className="space-y-6">
                     <UpcomingAppointments userId={userData.user.id} />
-                    <TherapyResources preferences={profileData?.therapy_preferences} />
+                    <TherapyResources profileData={typedProfileData} />
                 </div>
             </div>
         </div>

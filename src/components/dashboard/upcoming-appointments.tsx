@@ -1,7 +1,7 @@
 // src/components/dashboard/upcoming-appointments.tsx
 'use client'
 
-import { useEffect, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { CalendarPlus } from 'lucide-react'
@@ -45,7 +45,7 @@ export default function UpcomingAppointments({ userId }: { userId: string }) {
     }, [userId, supabase])
 
     return (
-        <Card>
+        <Card className="appointments-fade">
             <CardHeader>
                 <CardTitle>Upcoming Appointments</CardTitle>
             </CardHeader>

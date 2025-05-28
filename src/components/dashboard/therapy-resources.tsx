@@ -1,71 +1,84 @@
-// src/components/dashboard/mood-tracker.tsx
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Slider } from '@/components/ui/slider'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
-import { createClient } from '@/lib/supabase/client'
+import { UserProfile } from '@/types/profile'
+import { BookOpen, Video, Headphones, ExternalLink } from 'lucide-react'
 
-export default function MoodTracker({ initialMood, userId }: { initialMood: number; userId: string }) {
-    const [mood, setMood] = useState(initialMood)
-    const [note, setNote] = useState('')
-    const [saving, setSaving] = useState(false)
-    const supabase = createClient()
+interface TherapyResourcesProps {
+    profileData: UserProfile | null;
+}
 
-    const saveMoodEntry = async () => {
-        setSaving(true)
-        try {
-            await supabase
-                .from('mood_entries')
-                .insert({
-                    user_id: userId,
-                    mood_level: mood,
-                    notes: note || null,
-                    created_at: new Date().toISOString()
-                })
-            setNote('')
-        } catch (error) {
-            console.error('Error saving mood:', error)
-        } finally {
-            setSaving(false)
-        }
-    }
+interface Resource {
+    title: string;
+    type: string;
+    description: string;
+    url: string;
+    icon: React.ElementType;
+}
+
+export default function TherapyResources({ profileData }: TherapyResourcesProps) {
+    // Get therapy style from profile
+    const therapyStyle = profileData?.therapy_preferences?.style || 'general';
+
+    const getResources = (): Resource[] => {
+        // Resources could be filtered based on user preferences
+        return [
+            {
+                title: "Understanding CBT Techniques",
+                type: "Article",
+                description: "Learn the basics of Cognitive Behavioral Therapy",
+                url: "/resources/cbt-basics",
+                icon: BookOpen
+            },
+            {
+                title: "Guided Meditation Session",
+                type: "Audio",
+                description: "A 10-minute guided meditation for anxiety relief",
+                url: "/resources/meditation-anxiety",
+                icon: Headphones
+            },
+            {
+                title: "Therapy Session: Stress Management",
+                type: "Video",
+                description: "Watch a therapist explain stress management techniques",
+                url: "/resources/stress-management",
+                icon: Video
+            }
+        ];
+    };
+
+    const resources = getResources();
 
     return (
         <Card>
             <CardHeader>
-                <CardTitle>How are you feeling today?</CardTitle>
-                <CardDescription>Track your mood to monitor your mental wellness</CardDescription>
+                <CardTitle>Therapy Resources</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-                <div className="space-y-2">
-                    <div className="flex justify-between text-sm text-muted-foreground mb-2">
-                        <span>😔 Not well</span>
-                        <span>😊 Great</span>
-                    </div>
-                    <Slider
-                        value={[mood]}
-                        min={1}
-                        max={5}
-                        step={1}
-                        onValueChange={(value) => setMood(value[0])}
-                    />
+            <CardContent>
+                <div className="space-y-4">
+                    {resources.map((resource, index) => (
+                        <div key={index} className="flex flex-col gap-2 p-3 rounded-lg border">
+                            <div className="flex items-center gap-2">
+                                <div className="bg-primary/10 p-2 rounded-full">
+                                    <resource.icon className="h-4 w-4 text-primary" />
+                                </div>
+                                <div className="flex-1">
+                                    <h4 className="font-medium">{resource.title}</h4>
+                                    <p className="text-xs text-muted-foreground">{resource.type}</p>
+                                </div>
+                            </div>
+                            <p className="text-sm text-muted-foreground">{resource.description}</p>
+                            <Button variant="outline" size="sm" className="w-full mt-2" asChild>
+                                <a href={resource.url} className="flex items-center gap-2">
+                                    <span>View Resource</span>
+                                    <ExternalLink className="h-3 w-3" />
+                                </a>
+                            </Button>
+                        </div>
+                    ))}
                 </div>
-
-                <Textarea
-                    placeholder="Add notes about how you're feeling (optional)"
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    rows={3}
-                />
             </CardContent>
-            <CardFooter>
-                <Button onClick={saveMoodEntry} disabled={saving}>
-                    {saving ? 'Saving...' : 'Save Entry'}
-                </Button>
-            </CardFooter>
         </Card>
     )
 }

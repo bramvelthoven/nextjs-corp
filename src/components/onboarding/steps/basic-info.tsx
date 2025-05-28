@@ -1,19 +1,33 @@
-// src/components/onboarding/steps/basic-info.tsx
 'use client'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
-export default function BasicInfo({ data, updateData }) {
-    const handleChange = (e) => {
+interface BasicInfoData {
+    name: string;
+    age: string | number;
+    occupation: string;
+    pronouns: string;
+}
+
+interface BasicInfoProps {
+    data: {
+        basicInfo: BasicInfoData;
+        [key: string]: any;
+    };
+    updateData: (step: string, data: any) => void;
+}
+
+export default function BasicInfo({ data, updateData }: BasicInfoProps) {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         updateData('basicInfo', {
             ...data.basicInfo,
             [e.target.name]: e.target.value
         })
     }
 
-    const handlePronounsChange = (value) => {
+    const handlePronounsChange = (value: string) => {
         updateData('basicInfo', {
             ...data.basicInfo,
             pronouns: value
