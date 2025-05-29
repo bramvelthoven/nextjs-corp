@@ -22,11 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full" suppressHydrationWarning>
+    <html lang="en" className="h-dvh overflow-auto" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${manrope.className} min-h-screen`}>
+      <body className={`${manrope.className} h-full bg-background text-foreground antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -34,12 +34,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="max-w-5xl mx-auto p-4 mt-[69px]">
+          <main className="max-w-5xl h-auto flex-col mx-auto p-4">
             {children}
           </main>
-          <Separator />
           <Footer />
-          <Separator />
         </ThemeProvider>
       </body>
     </html>
