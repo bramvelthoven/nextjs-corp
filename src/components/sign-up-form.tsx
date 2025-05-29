@@ -53,6 +53,24 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
     }
   }
 
+  const handleGoogleLogin = async () => {
+    const supabase = createClient()
+    setIsLoading(true)
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `/protected`,
+        },
+      })
+      if (error) throw error
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : 'Google sign-in failed')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
@@ -101,6 +119,15 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
               {error && <p className="text-sm text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? 'Creating an account...' : 'Sign up'}
+              </Button>
+              <Button
+                  type="button"
+                  onClick={handleGoogleLogin}
+                  className="w-full"
+                  variant="outline"
+                  disabled={isLoading}
+              >
+                {isLoading ? 'Redirecting...' : 'Continue with Google'}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">

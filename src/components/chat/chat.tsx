@@ -47,7 +47,7 @@ export default function Chat() {
     setIsGenerating(true);
     setPromptCount((count) => count + 1);
 
-    const res = await fetch("/api/answer", {
+    const res = await fetch("/api/chat", {
       method: "POST",
       body: JSON.stringify({ question: input }),
     });
