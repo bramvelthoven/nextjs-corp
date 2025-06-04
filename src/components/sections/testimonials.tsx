@@ -16,7 +16,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useGsapFadeUpStagger } from "@/components/hooks/useGsapFadeUpStagger";
+import { useGsapFadeUpStagger } from "@/hooks/useGsapFadeUpStagger";
 
 const testimonials = [
   { image: "/person1.png", text: "I can't believe how much better I feel", author: "Sarah J." },
@@ -45,7 +45,7 @@ export function Testimonials() {
                 height={96}
                 width={96}
                 src={t.image}
-                alt="Testimonial"
+                alt={`Profile photo of ${t.author}`}
                 className="rounded-full object-cover mx-auto"
               />
             </CardHeader>
@@ -84,7 +84,7 @@ export function Testimonials() {
                         height={96}
                         width={96}
                         src={t.image}
-                        alt="Testimonial"
+                        alt={`Profile photo of ${t.author}`}
                         className="rounded-full object-cover mx-auto"
                       />
                     </CardHeader>

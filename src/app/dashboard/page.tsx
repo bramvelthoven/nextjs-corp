@@ -6,6 +6,10 @@ import RecommendedActivities from '@/components/dashboard/recommended-activities
 import TherapyResources from '@/components/dashboard/therapy-resources'
 import UpcomingAppointments from '@/components/dashboard/upcoming-appointments'
 import { UserProfile } from '@/types/profile'
+import { checkSubscription } from '@/lib/subscription'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default async function DashboardPage() {
     const supabase = await createClient()
@@ -30,9 +34,55 @@ export default async function DashboardPage() {
         redirect('/protected')
     }
 
+    // Check subscription status
+    const { hasAccess, subscription, plan } = await checkSubscription(userData.user.id)
+
+    // If no active subscription for paid features, show upgrade prompt
+    if (!hasAccess && plan !== 'free') {
+        return (
+            <div className="container mx-auto space-y-6 pt-8">
+                <Card className="border-destructive">
+                    <CardHeader>
+                        <CardTitle className="text-destructive">Subscription Required</CardTitle>
+                        <CardDescription>
+                            Your subscription is {subscription}. Please update your payment method or choose a new plan to continue.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="flex gap-4">
+                            <Button asChild>
+                                <Link href="/pricing">View Plans</Link>
+                            </Button>
+                            <Button variant="outline" asChild>
+                                <Link href="/account">Manage Subscription</Link>
+                            </Button>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        )
+    }
+
     return (
-        <div className="container mx-auto space-y-6">
+        <div className="container mx-auto space-y-6 pt-8">
             <DashboardHeader userData={userData.user} profileData={typedProfileData} />
+            
+            {/* Show plan info */}
+            {plan && plan !== 'free' && (
+                <Card className="bg-primary/5 border-primary/20">
+                    <CardContent className="pt-6">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="font-semibold text-primary">Current Plan: {plan.charAt(0).toUpperCase() + plan.slice(1)}</p>
+                                <p className="text-sm text-muted-foreground">Status: {subscription}</p>
+                            </div>
+                            <Button variant="outline" size="sm" asChild>
+                                <Link href="/account">Manage</Link>
+                            </Button>
+                        </div>
+                    </CardContent>
+                </Card>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-6">

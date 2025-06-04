@@ -16,7 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import  { useGsapFadeUpStagger } from "@/components/hooks/useGsapFadeUpStagger";
+import  { useGsapFadeUpStagger } from "@/hooks/useGsapFadeUpStagger";
 const methods = [
   {
     title: "Cognitive Behavioral Therapy (CBT)",

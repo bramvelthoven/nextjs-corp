@@ -54,17 +54,19 @@ export function HeroSection() {
             className="absolute inset-0 w-full h-full z-0"
             aria-hidden="true"
         />
-        <div className="absolute top-12 right-12 max-w-lg ml-10 z-40">
-          <h2 className="text-4xl font-bold text-primary drop-shadow">
+        <div className="absolute inset-0 flex items-center justify-end pr-12 z-40">
+          <div className="max-w-lg text-right">
+          <h1 className="text-4xl font-bold text-primary drop-shadow">
             Therapy for your mind
-          </h2>
+          </h1>
           <p className="mt-2 text-lg text-primary drop-shadow">
             The most advanced therapy methods, personalized for you, and available anytime.
           </p>
-          <div className="flex justify-end mt-4">
-            <Button variant="outline" asChild>
-              <Link href="/chat">Try our chat!</Link>
-            </Button>
+            <div className="flex justify-end mt-4">
+              <Button variant="outline" asChild>
+                <Link href="/chat">Try our chat!</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

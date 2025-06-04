@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useRef } from "react"
-import { useGsapFadeIn } from "@/components/hooks/useGsapFadeIn"
+import { useGsapFadeIn } from "@/hooks/useGsapFadeIn"
 
 export default function HowItWorks() {
   const sectionRef = useRef<HTMLDivElement>(null);

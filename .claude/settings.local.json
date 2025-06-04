@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(find:*)",
+      "Bash(rg:*)",
+      "Bash(/Users/yustintroost/.nvm/versions/node/v20.19.2/lib/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/arm64-darwin/rg \"^import.*from\" /Users/yustintroost/Documents/sites/nextjs-corp/src --type typescript --type tsx -n)",
+      "Bash(ls:*)",
+      "Bash(rm:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(/Users/yustintroost/.nvm/versions/node/v20.19.2/lib/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/arm64-darwin/rg -n \"px-6|py-6|gap-6|space-y-6|mb-6|mt-6\" /Users/yustintroost/Documents/sites/nextjs-corp/src)",
+      "Bash(/Users/yustintroost/.nvm/versions/node/v20.19.2/lib/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/arm64-darwin/rg -n \"transition-all duration-200\" /Users/yustintroost/Documents/sites/nextjs-corp/src)",
+      "Bash(sed:*)",
+      "Bash(npm run lint)",
+      "Bash(npm install:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Separator } from "@/components/ui/separator";
 import "@/app/styles/globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -26,7 +25,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${manrope.className} h-full bg-background text-foreground antialiased`}>
+      <body className={`${manrope.className} h-full bg-background text-foreground antialiased flex flex-col`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -34,8 +33,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="max-w-5xl h-auto flex-col mx-auto p-4">
-            {children}
+          <main className="flex-grow">
+            <div className="max-w-5xl mx-auto p-4">
+              {children}
+            </div>
           </main>
           <Footer />
         </ThemeProvider>

@@ -9,11 +9,7 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGsapFadeUpStagger } from "@/components/hooks/useGsapFadeUpStagger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { useGsapFadeUpStagger } from "@/hooks/useGsapFadeUpStagger";
 
 const features = [
   { title: "Chat with a licensed therapist", text: "Licensed therapists use the latest techniques to help you improve your mental health." },

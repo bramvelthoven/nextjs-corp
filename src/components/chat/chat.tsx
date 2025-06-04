@@ -168,6 +168,7 @@ export default function Chat() {
             className="absolute top-1/2 right-2 transform -translate-y-1/2"
             type="submit"
             size="icon"
+            aria-label="Send message"
             disabled={isLoading || isGenerating || !input || promptCount >= FREE_PROMPT_LIMIT}
           >
             <Send className="size-4" />
@@ -175,7 +176,7 @@ export default function Chat() {
         </form>
         {promptCount >= FREE_PROMPT_LIMIT && (
           <div className="mt-4 text-center">
-            <p className="text-red-400 font-semibold mb-2">
+            <p className="text-destructive font-semibold mb-2">
               Free demo limit reached. Please choose a plan to continue.
             </p>
             <Button asChild>
